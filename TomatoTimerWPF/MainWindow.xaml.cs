@@ -99,14 +99,14 @@ namespace TomatoTimerWPF
 
             InitializeComponent(); 
 
-            //string path = System.Reflection.Assembly.GetExecutingAssembly().Location + ".config";
-            //if (!System.IO.File.Exists(path))
-            //{
-            //    //TomatoTimerWPF.TimerSettings.Default.Save();
-            //    Console.WriteLine("Save setting [" + path + "]");
-            //}
-            //else
-            //    Console.WriteLine("Exists![" + path + "]");
+            string path = System.Reflection.Assembly.GetExecutingAssembly().Location + ".config";
+            if (!System.IO.File.Exists(path))
+            {
+                TomatoTimerWPF.TimerSettings.Default.Save();
+                Console.WriteLine("Save setting [" + path + "]");
+            }
+            else
+                Console.WriteLine("Exists![" + path + "]");
 
             m_OverlayIconLastMin = -99999;
             m_isNormalClosingEvent = false;
@@ -151,17 +151,19 @@ namespace TomatoTimerWPF
 
             try
             {
-                Rect bounds = Rect.Parse(TomatoTimerWPF.TimerSettings.Default.WindowRestoreBounds);
-                bounds = CheckBounds(bounds);
-                this.Top = bounds.Top;
-                this.Left = bounds.Left;
-                this.Width = bounds.Width;
-                this.Height = bounds.Height;
+                //Rect bounds = Rect.Parse(TomatoTimerWPF.TimerSettings.Default.WindowRestoreBounds);
+                //MessageBox.Show("[" + bounds + "]");
+                //bounds = CheckBounds(bounds);
+                List<Int32> bounds = TomatoTimerWPF.TimerSettings.Default.WindowRestoreBounds.Split(';').Where(x => int.TryParse(x, out _)).Select(int.Parse).ToList();
+                this.Left = bounds[0];
+                this.Top = bounds[1];
+                this.Width = bounds[2];
+                this.Height = bounds[3];
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                //MessageBox.Show(e.ToString());
-                //MessageBox.Show("[" + TomatoTimerWPF.TimerSettings.Default.WindowRestoreBounds + "]");
+                MessageBox.Show(e.ToString());
+                MessageBox.Show("Bounds on file [" + TomatoTimerWPF.TimerSettings.Default.WindowRestoreBounds + "]");
             }
         }
 
@@ -234,6 +236,9 @@ namespace TomatoTimerWPF
                 DateTime restoreStart = DateTime.Parse(TomatoTimerWPF.TimerSettings.Default.TimerRestoreDateTime);
                 m_TimeDateStart = restoreStart;
                 m_TimeDatePauseStart = restoreStart;
+                //m_TimeDateStart = DateTime.Now;
+                //m_TimeDatePauseStart = DateTime.Now;
+
                 m_mode = (TimerMode)TomatoTimerWPF.TimerSettings.Default.TimerRestoreMode;
             }
             catch(Exception)
@@ -280,8 +285,12 @@ namespace TomatoTimerWPF
                 TomatoTimerWPF.TimerSettings.Default.TimerRestoreMode = (int)TimerMode.MODE_WORK;
             }
             TomatoTimerWPF.TimerSettings.Default.WindowRestoreBounds = this.RestoreBounds.ToString();
+            //MessageBox.Show("[" + this.RestoreBounds.ToString() + "]");
+            //TomatoTimerWPF.TimerSettings.Default.Upgrade();
             TomatoTimerWPF.TimerSettings.Default.Save();
 
+            TomatoTimerWPF.TimerSettings.Default.Reload();
+            //MessageBox.Show("[Saved]");
             m_isNormalClosingEvent = true;
             Close();
         }
@@ -850,7 +859,7 @@ namespace TomatoTimerWPF
         private void menuClose_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             //MessageBox.Show("menuClose_MouseLeftButtonUp");
-            this.SavePropertiesAndClose(true);
+            this.SavePropertiesAndClose(false);
         }
 
         private void menuCloseDontSave_Click(object sender, RoutedEventArgs e)
