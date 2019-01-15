@@ -538,7 +538,7 @@ namespace TomatoTimerWPF
                         if (m_bIsPause)
                             g.FillRectangle(System.Drawing.Brushes.Gray, 1, 1, 14, 14);
                         else if (timerSpan.IsNegativeOrZero())
-                            g.FillRectangle(System.Drawing.Brushes.DarkRed, 1, 1, 14, 14);
+                            g.FillRectangle(System.Drawing.Brushes.Red, 1, 1, 14, 14);
                         else if (m_mode == TimerMode.MODE_WORK)
                             g.FillRectangle(System.Drawing.Brushes.BlueViolet, 1, 1, 14, 14);
                         else
@@ -578,14 +578,12 @@ namespace TomatoTimerWPF
                 if (m_bIsPause)
                 {
                     this.TaskbarItemInfo.ProgressState = System.Windows.Shell.TaskbarItemProgressState.Indeterminate;
-                    if (this.TaskbarItemInfo.ProgressValue != 1)
-                        this.TaskbarItemInfo.ProgressValue = 1;
+                    this.TaskbarItemInfo.ProgressValue = 1;
                 }
                 else if (m_bIsOverTime)
                 {
                     this.TaskbarItemInfo.ProgressState = System.Windows.Shell.TaskbarItemProgressState.Error;
-                    if (this.TaskbarItemInfo.ProgressValue != 1)
-                        this.TaskbarItemInfo.ProgressValue = 1;
+                    this.TaskbarItemInfo.ProgressValue = 1;
                 }
                 else
                 {
@@ -600,18 +598,18 @@ namespace TomatoTimerWPF
                 if (m_mode == TimerMode.MODE_WORK)
                 {
 
-                    ThumbButtonGoToWork.Visibility = Visibility.Collapsed;
+                    ThumbButtonGoToWork.Visibility = Visibility.Hidden;
                     ThumbButtonTakeABreak.Visibility = Visibility.Visible;
-                    ThumbButtonPause.Visibility = !m_bIsPause ? Visibility.Visible : Visibility.Collapsed;
-                    ThumbButtonPlay.Visibility = m_bIsPause ? Visibility.Visible : Visibility.Collapsed;
+                    ThumbButtonPause.Visibility = !m_bIsPause ? Visibility.Visible : Visibility.Hidden;
+                    ThumbButtonPlay.Visibility = m_bIsPause ? Visibility.Visible : Visibility.Hidden;
 
                 }
                 else
                 {
                     ThumbButtonGoToWork.Visibility = Visibility.Visible;
-                    ThumbButtonTakeABreak.Visibility = Visibility.Collapsed;
-                    ThumbButtonPause.Visibility = Visibility.Collapsed;
-                    ThumbButtonPlay.Visibility = Visibility.Collapsed;
+                    ThumbButtonTakeABreak.Visibility = Visibility.Hidden;
+                    ThumbButtonPause.Visibility = Visibility.Hidden;
+                    ThumbButtonPlay.Visibility = Visibility.Hidden;
                 }
             }
         }
@@ -635,14 +633,6 @@ namespace TomatoTimerWPF
             m_TimeSpan = TimeSpan.FromMinutes(0);
             m_mode = TimerMode.MODE_WORK;
             m_bIsPause = false;
-
-
-            if (menuClose.Visibility == System.Windows.Visibility.Collapsed)
-            {
-                menuClose.Visibility = System.Windows.Visibility.Visible;
-                btnClose.Visibility = System.Windows.Visibility.Collapsed;
-            }
-
             UpdateUI();
            
         }
@@ -666,13 +656,6 @@ namespace TomatoTimerWPF
                     m_mode = TimerMode.MODE_RELAX_LONG;
             }
             m_bIsPause = false;
-
-            if (menuClose.Visibility == System.Windows.Visibility.Visible)
-            {
-                menuClose.Visibility = System.Windows.Visibility.Collapsed;
-                btnClose.Visibility = System.Windows.Visibility.Visible;
-            }
-
             UpdateUI();
         }
 
@@ -722,16 +705,12 @@ namespace TomatoTimerWPF
 
         private void SetWindowFlash(bool enable)
         {
-            if (m_pageButtons.labelTimeWhite.Visibility == Visibility.Visible)
-                return;
-
             FLASHWINFO fw = new FLASHWINFO();
 
             fw.cbSize = Convert.ToUInt32(Marshal.SizeOf(typeof(FLASHWINFO)));
             fw.hwnd = m_hwnd;// new WindowInteropHelper(this).Handle;
             fw.dwFlags = enable ? 2 : 0;
-            //fw.uCount = enable ? UInt32.MaxValue : 0;
-            fw.uCount = enable ? (UInt32)(10*60) : 0;
+            fw.uCount = enable ? UInt32.MaxValue : 0;
 
             FlashWindowEx(ref fw);
         }
