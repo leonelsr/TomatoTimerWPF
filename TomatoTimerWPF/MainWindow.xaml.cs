@@ -224,7 +224,7 @@ namespace TomatoTimerWPF
             m_hwnd = new WindowInteropHelper(this).Handle;
 
             Int32 windowStyle = GetWindowLongPtr(m_hwnd, GWL_STYLE);
-            SetWindowLongPtr(m_hwnd, GWL_STYLE, windowStyle & ~WS_MAXIMIZEBOX);
+            SetWindowLongPtr(m_hwnd, GWL_STYLE, windowStyle & ~WS_MAXIMIZEBOX & ~WS_MINIMIZEBOX);
 
             m_bIsSupportTaskbarManager = true;
             this.TaskbarItemInfo.ThumbnailClipMargin = new Thickness(0, 0, 0, 0);
