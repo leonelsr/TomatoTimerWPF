@@ -226,7 +226,7 @@ namespace TomatoTimerWPF
             m_hwnd = new WindowInteropHelper(this).Handle;
 
             Int32 windowStyle = GetWindowLongPtr(m_hwnd, GWL_STYLE);
-            SetWindowLongPtr(m_hwnd, GWL_STYLE, windowStyle & ~WS_MAXIMIZEBOX & ~WS_MINIMIZEBOX);
+            SetWindowLongPtr(m_hwnd, GWL_STYLE, windowStyle & ~WS_MAXIMIZEBOX);
 
             m_bIsSupportTaskbarManager = true;
             this.TaskbarItemInfo.ThumbnailClipMargin = new Thickness(0, 0, 0, 0);
@@ -853,6 +853,12 @@ namespace TomatoTimerWPF
         private void ToggleAlwaysOnTop()
         {
             this.Topmost = btnAlwaysOnTop.IsChecked.HasValue && btnAlwaysOnTop.IsChecked.Value;
+
+            Int32 windowStyle = GetWindowLongPtr(m_hwnd, GWL_STYLE);
+            if (btnAlwaysOnTop.IsChecked.HasValue && btnAlwaysOnTop.IsChecked.Value)
+                SetWindowLongPtr(m_hwnd, GWL_STYLE, windowStyle & ~WS_MAXIMIZEBOX & ~WS_MINIMIZEBOX);
+            else
+                SetWindowLongPtr(m_hwnd, GWL_STYLE, windowStyle & ~WS_MAXIMIZEBOX | WS_MINIMIZEBOX);
         }
 
 
