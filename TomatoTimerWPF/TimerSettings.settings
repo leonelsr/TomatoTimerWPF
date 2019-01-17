@@ -27,7 +27,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="WindowRestoreBounds" Type="System.String" Scope="User">
-      <Value Profile="(Default)">3000;182;236;40</Value>
+      <Value Profile="(Default)">100;100;250;40</Value>
     </Setting>
     <Setting Name="TimerRestoreDateTime" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

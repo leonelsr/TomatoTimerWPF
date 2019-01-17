@@ -13,7 +13,7 @@ namespace TomatoTimerWPF {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
-    internal sealed partial class TimerSettings : global::System.Configuration.ApplicationSettingsBase {
+    public sealed partial class TimerSettings : global::System.Configuration.ApplicationSettingsBase {
         
         private static TimerSettings defaultInstance = ((TimerSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new TimerSettings())));
         
@@ -121,7 +121,7 @@ namespace TomatoTimerWPF {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("3000;182;236;40")]
+        [global::System.Configuration.DefaultSettingValueAttribute("100;100;250;40")]
         public string WindowRestoreBounds {
             get {
                 return ((string)(this["WindowRestoreBounds"]));
