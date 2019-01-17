@@ -47,10 +47,10 @@
     <Setting Name="SoundPathResume" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="WorkTime_Uesr" Type="System.Int32" Scope="User">
+    <Setting Name="WorkTime_User" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">25</Value>
     </Setting>
-    <Setting Name="RelaxTime_Uesr" Type="System.Int32" Scope="User">
+    <Setting Name="RelaxTime_User" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
   </Settings>

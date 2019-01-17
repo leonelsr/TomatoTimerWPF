@@ -206,24 +206,24 @@ namespace TomatoTimerWPF {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("25")]
-        public int WorkTime_Uesr {
+        public int WorkTime_User {
             get {
-                return ((int)(this["WorkTime_Uesr"]));
+                return ((int)(this["WorkTime_User"]));
             }
             set {
-                this["WorkTime_Uesr"] = value;
+                this["WorkTime_User"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("5")]
-        public int RelaxTime_Uesr {
+        public int RelaxTime_User {
             get {
-                return ((int)(this["RelaxTime_Uesr"]));
+                return ((int)(this["RelaxTime_User"]));
             }
             set {
-                this["RelaxTime_Uesr"] = value;
+                this["RelaxTime_User"] = value;
             }
         }
     }

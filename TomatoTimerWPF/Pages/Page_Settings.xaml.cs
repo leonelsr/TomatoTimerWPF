@@ -64,11 +64,11 @@ namespace TomatoTimerWPF
 
             tbox = cbWorkTimeComboBox.Items[2] as TextBox;
             if (tbox != null)
-                tbox.Text = "" + TomatoTimerWPF.TimerSettings.Default.WorkTime_Uesr;
+                tbox.Text = "" + TomatoTimerWPF.TimerSettings.Default.WorkTime_User;
 
             tbox = cbRelaxTimeComboBox.Items[2] as TextBox;
             if (tbox != null)
-                tbox.Text = "" + TomatoTimerWPF.TimerSettings.Default.RelaxTime_Uesr;
+                tbox.Text = "" + TomatoTimerWPF.TimerSettings.Default.RelaxTime_User;
 
             tbox = cbLongRelaxTimeComboBox.Items[2] as TextBox;
             if (tbox != null)
@@ -181,11 +181,11 @@ namespace TomatoTimerWPF
 
             tbox = cbWorkTimeComboBox.Items[2] as TextBox;
             if (tbox != null)
-                TomatoTimerWPF.TimerSettings.Default.WorkTime_Uesr = Int32.Parse(tbox.Text);
+                TomatoTimerWPF.TimerSettings.Default.WorkTime_User = Int32.Parse(tbox.Text);
 
             tbox = cbRelaxTimeComboBox.Items[2] as TextBox;
             if (tbox != null)
-                TomatoTimerWPF.TimerSettings.Default.RelaxTime_Uesr = Int32.Parse(tbox.Text);
+                TomatoTimerWPF.TimerSettings.Default.RelaxTime_User = Int32.Parse(tbox.Text);
 
             tbox = cbLongRelaxTimeComboBox.Items[2] as TextBox;
             if (tbox != null)
