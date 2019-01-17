@@ -13,7 +13,7 @@ namespace TomatoTimerWPF {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
-    public sealed partial class TimerSettings : global::System.Configuration.ApplicationSettingsBase {
+    internal sealed partial class TimerSettings : global::System.Configuration.ApplicationSettingsBase {
         
         private static TimerSettings defaultInstance = ((TimerSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new TimerSettings())));
         
